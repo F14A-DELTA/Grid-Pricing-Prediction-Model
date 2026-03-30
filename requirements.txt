@@ -1,0 +1,6 @@
+gradio
+joblib
+lightgbm
+numpy
+pandas
+requests
