@@ -1,4 +1,12 @@
-# Grid-Pricing-Prediction-Model
-https://huggingface.co/spaces/a13awd/electricity_grid_model
+---
+title: Electricity Grid Model
+emoji: 🏆
+colorFrom: indigo
+colorTo: indigo
+sdk: gradio
+sdk_version: 6.10.0
+app_file: app.py
+pinned: false
+---
 
-Checkout [Data Repo](https://github.com/F14A-DELTA/Data) for the prediction models, Jupyter notebook and raw/time-series data.
+Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
