@@ -17,4 +17,4 @@ jobs:
       - name: Push to Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push https://a13awd:$HF_TOKEN@huggingface.co/spaces/a13awd/electricity_grid_model main
+        run: git push --force https://a13awd:$HF_TOKEN@huggingface.co/spaces/a13awd/electricity_grid_model main
