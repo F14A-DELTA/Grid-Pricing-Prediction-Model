@@ -1,3 +1,14 @@
+---
+title: Electricity Grid Model
+emoji: ⚡
+colorFrom: yellow
+colorTo: red
+sdk: gradio
+app_port: 7860
+app_file: app.py
+pinned: false
+---
+
 # Electricity Grid Pricing Prediction Model
 
 Machine learning model for forecasting Australian electricity spot prices.
