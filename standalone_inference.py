@@ -33,9 +33,17 @@ RENEWABLE_FUELTECHS = {
 }
 DEFAULT_BASE_URL = os.environ.get("OPENELECTRICITY_API_URL", "https://api.openelectricity.org.au/v4")
 DEFAULT_LOOKBACK_MINUTES = 90
-DEFAULT_MODELS_DIR = Path(__file__).resolve().parent / "models" / "multi_horizon"
+DEFAULT_MODELS_DIR = Path(__file__).resolve().parent / "multi_horizon"
 DEFAULT_LATEST_OUTPUT = Path(__file__).resolve().parent / "predictions" / "latest_predictions.json"
 DEFAULT_LOG_PATH = Path(__file__).resolve().parent / "predictions" / "prediction_log.csv"
+
+TARGET_SUFFIX_MAP = {
+    "price_dollar_per_mwh": "price",
+    "demand_mw": "demand",
+    "gen_wind_mw": "gen_wind",
+    "gen_coal_black_mw": "gen_coal_black",
+    "gen_coal_brown_mw": "gen_coal_brown"
+}
 
 
 def strip_timezone(dt: datetime) -> str:
@@ -172,6 +180,8 @@ def fetch_recent_region_series(api_key: str, lookback_minutes: int = DEFAULT_LOO
             current_price = to_float(market_item.get("price"))
             current_demand = to_float(market_item.get("demand"))
             wind_mw = 0.0
+            coal_black_mw = 0.0
+            coal_brown_mw = 0.0
             total_net_power = 0.0
             renewables_mw = 0.0
 
@@ -185,6 +195,10 @@ def fetch_recent_region_series(api_key: str, lookback_minutes: int = DEFAULT_LOO
                     renewables_mw += power
                 if fueltech == "wind":
                     wind_mw = power
+                elif fueltech == "coal_black":
+                    coal_black_mw = power
+                elif fueltech == "coal_brown":
+                    coal_brown_mw = power
 
             renewables_pct = (renewables_mw / total_net_power * 100.0) if total_net_power > 0 else float("nan")
 
@@ -192,6 +206,8 @@ def fetch_recent_region_series(api_key: str, lookback_minutes: int = DEFAULT_LOO
             row[f"{region}_demand_mw"] = current_demand
             row[f"{region}_renewables_pct"] = renewables_pct
             row[f"{region}_gen_wind_mw"] = wind_mw
+            row[f"{region}_gen_coal_black_mw"] = coal_black_mw
+            row[f"{region}_gen_coal_brown_mw"] = coal_brown_mw
 
         region_snapshots.append(row)
 
@@ -216,10 +232,15 @@ def build_feature_row(region_series: list[dict[str, Any]]) -> dict[str, float | 
         current_demand = demands[-1]
         current_renewables = renewables[-1]
         current_wind = winds[-1]
+        current_coal_black = to_float(snapshots[-1].get(f"{region}_gen_coal_black_mw", 0.0))
+        current_coal_brown = to_float(snapshots[-1].get(f"{region}_gen_coal_brown_mw", 0.0))
 
         feature_row[f"{region}_price_dollar_per_mwh"] = current_price
         feature_row[f"{region}_demand_mw"] = current_demand
         feature_row[f"{region}_renewables_pct"] = current_renewables
+        feature_row[f"{region}_gen_wind_mw"] = current_wind
+        feature_row[f"{region}_gen_coal_black_mw"] = current_coal_black
+        feature_row[f"{region}_gen_coal_brown_mw"] = current_coal_brown
         feature_row[f"{region}_price_lag_1"] = prices[-2]
         feature_row[f"{region}_price_lag_2"] = prices[-3]
         feature_row[f"{region}_price_lag_6"] = prices[-7]
@@ -257,9 +278,12 @@ def build_feature_row(region_series: list[dict[str, Any]]) -> dict[str, float | 
     return feature_row
 
 
-def load_metadata(models_dir: Path, region: str, horizon_steps: int) -> dict[str, Any]:
-    metadata_path = models_dir / f"{region.lower()}_lightgbm_residual_blend_tplus{horizon_steps}_metadata.json"
+def load_metadata(models_dir: Path, region: str, clean_suffix: str, horizon_steps: int) -> dict[str, Any] | None:
+    metadata_path = models_dir / f"{region.lower()}_{clean_suffix}_lightgbm_residual_blend_tplus{horizon_steps}_metadata.json"
+    if not metadata_path.exists():
+        return None
     return json.loads(metadata_path.read_text(encoding="utf-8"))
+
 
 
 def predict_residual(model: Any, model_input: pd.DataFrame) -> float:
@@ -275,13 +299,14 @@ def append_prediction_log(log_path: Path, rows: list[dict[str, Any]]) -> None:
         "prediction_generated_at",
         "source_snapshot_at",
         "region",
+        "target_metric",
         "horizon_label",
         "horizon_minutes",
         "model_name",
         "alpha",
-        "current_price",
+        "current_value",
         "predicted_residual",
-        "predicted_price",
+        "predicted_value",
     ]
     expected_header = ",".join(fieldnames)
     file_mode = "a"
@@ -318,52 +343,62 @@ def generate_prediction_payload(
     prediction_log_rows: list[dict[str, Any]] = []
 
     for region in REGIONS:
-        current_price = float(feature_row[f"{region}_price_dollar_per_mwh"])
-        forecasts: dict[str, Any] = {}
+        # Define base dictionary for the region's current values
+        region_data = {
+            "prediction_generated_at": prediction_generated_at,
+            "source_snapshot_at": source_snapshot_at,
+            "region": region,
+            "current_values": {},
+            "forecasts": {horizon: {} for horizon in HORIZONS.values()}
+        }
 
-        for horizon_steps, horizon_label in HORIZONS.items():
-            metadata = load_metadata(models_dir, region, horizon_steps)
-            model_path = models_dir / f"{region.lower()}_lightgbm_residual_blend_tplus{horizon_steps}.pkl"
-            model = joblib.load(model_path)
-            feature_columns = metadata["feature_columns"]
-            alpha = float(metadata["alpha"])
-            model_input = pd.DataFrame([{column: feature_row.get(column, np.nan) for column in feature_columns}])
-            predicted_residual = predict_residual(model, model_input)
-            predicted_price = current_price + alpha * predicted_residual
+        for raw_suffix, clean_suffix in TARGET_SUFFIX_MAP.items():
+            current_val = float(feature_row.get(f"{region}_{raw_suffix}", 0.0))
+            region_data["current_values"][clean_suffix] = current_val
 
-            forecasts[horizon_label] = {
-                "model_name": metadata["model_name"],
-                "alpha": alpha,
-                "horizon_steps": horizon_steps,
-                "horizon_minutes": int(metadata.get("horizon_minutes", horizon_steps * 5)),
-                "predicted_residual": predicted_residual,
-                "predicted_price": predicted_price,
-            }
+            for horizon_steps, horizon_label in HORIZONS.items():
+                metadata = load_metadata(models_dir, region, clean_suffix, horizon_steps)
+                
+                # E.g. TAS doesn't have black coal models, so we skip if metadata is None
+                if not metadata:
+                    continue
+                    
+                model_path = models_dir / f"{region.lower()}_{clean_suffix}_lightgbm_residual_blend_tplus{horizon_steps}.pkl"
+                model = joblib.load(model_path)
+                
+                feature_columns = metadata["feature_columns"]
+                alpha = float(metadata["alpha"])
+                model_input = pd.DataFrame([{column: feature_row.get(column, np.nan) for column in feature_columns}])
+                
+                predicted_residual = predict_residual(model, model_input)
+                predicted_value = current_val + alpha * predicted_residual
 
-            prediction_log_rows.append(
-                {
-                    "prediction_generated_at": prediction_generated_at,
-                    "source_snapshot_at": source_snapshot_at,
-                    "region": region,
-                    "horizon_label": horizon_label,
-                    "horizon_minutes": forecasts[horizon_label]["horizon_minutes"],
+                region_data["forecasts"][horizon_label][clean_suffix] = {
                     "model_name": metadata["model_name"],
                     "alpha": alpha,
-                    "current_price": current_price,
+                    "horizon_steps": horizon_steps,
+                    "horizon_minutes": int(metadata.get("horizon_minutes", horizon_steps * 5)),
                     "predicted_residual": predicted_residual,
-                    "predicted_price": predicted_price,
+                    "predicted_value": predicted_value,
                 }
-            )
 
-        region_predictions.append(
-            {
-                "prediction_generated_at": prediction_generated_at,
-                "source_snapshot_at": source_snapshot_at,
-                "region": region,
-                "current_price": current_price,
-                "forecasts": forecasts,
-            }
-        )
+                prediction_log_rows.append(
+                    {
+                        "prediction_generated_at": prediction_generated_at,
+                        "source_snapshot_at": source_snapshot_at,
+                        "region": region,
+                        "target_metric": clean_suffix,
+                        "horizon_label": horizon_label,
+                        "horizon_minutes": horizon_steps * 5,
+                        "model_name": metadata["model_name"],
+                        "alpha": alpha,
+                        "current_value": current_val,
+                        "predicted_residual": predicted_residual,
+                        "predicted_value": predicted_value,
+                    }
+                )
+
+        region_predictions.append(region_data)
 
     latest_payload = {
         "prediction_generated_at": prediction_generated_at,

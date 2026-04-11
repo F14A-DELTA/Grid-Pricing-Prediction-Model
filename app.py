@@ -43,28 +43,40 @@ def load_prediction_payload() -> dict[str, Any]:
     return json.loads(LOCAL_PREDICTIONS_PATH.read_text(encoding="utf-8"))
 
 
+
+
 def build_dataframe(payload: dict[str, Any]) -> pd.DataFrame:
     rows = []
+    
+    # Clean naming for our dashboard columns
+    TARGET_METRIC_LABELS = {
+        "price": "Price",
+        "demand": "Demand",
+        "gen_wind": "Wind Gen",
+        "gen_coal_black": "Black Coal",
+        "gen_coal_brown": "Brown Coal"
+    }
+
     for row in payload.get("regions", []):
         forecasts = row.get("forecasts", {})
-        rows.append(
-            {
-                "Region": row["region"],
-                "Current Price": row.get("current_price_dollar_per_mwh", row.get("current_price")),
-                "Predicted Price In 5m": forecasts.get("5m", {}).get(
-                    "predicted_price_dollar_per_mwh", forecasts.get("5m", {}).get("predicted_price")
-                ),
-                "Predicted Price In 15m": forecasts.get("15m", {}).get(
-                    "predicted_price_dollar_per_mwh", forecasts.get("15m", {}).get("predicted_price")
-                ),
-                "Predicted Price In 30m": forecasts.get("30m", {}).get(
-                    "predicted_price_dollar_per_mwh", forecasts.get("30m", {}).get("predicted_price")
-                ),
-                "Model": forecasts.get("5m", {}).get("model_name"),
-                "Prediction Generated At": row.get("prediction_generated_at", payload.get("prediction_generated_at")),
-                "Source Snapshot At": row.get("source_snapshot_at", payload.get("source_snapshot_at")),
-            }
-        )
+        current_values = row.get("current_values", {})
+        
+        flat_row = {
+            "Region": row["region"],
+            "Prediction Generated At": row.get("prediction_generated_at", payload.get("prediction_generated_at")),
+            "Source Snapshot At": row.get("source_snapshot_at", payload.get("source_snapshot_at")),
+        }
+        
+        for metric, label in TARGET_METRIC_LABELS.items():
+            if metric not in current_values:
+                continue
+                
+            flat_row[f"Current {label}"] = current_values.get(metric)
+            flat_row[f"{label} In 5m"] = forecasts.get("5m", {}).get(metric, {}).get("predicted_value")
+            flat_row[f"{label} In 15m"] = forecasts.get("15m", {}).get(metric, {}).get("predicted_value")
+            flat_row[f"{label} In 30m"] = forecasts.get("30m", {}).get(metric, {}).get("predicted_value")
+
+        rows.append(flat_row)
 
     return pd.DataFrame(rows)
 
@@ -83,7 +95,7 @@ def refresh_dashboard() -> tuple[str, pd.DataFrame, dict[str, Any]]:
 with gr.Blocks(title="NEM Spot Price Predictor") as demo:
     gr.Markdown("# NEM Spot Price Predictor")
     gr.Markdown(
-        "Shows current regional prices and model-predicted spot prices in 5, 15, and 30 minutes."
+         "Shows current regional generation baselines and model-predicted targets (Price, Demand, Wind, Coal) in 5, 15, and 30 minutes."
     )
 
     summary = gr.Textbox(label="Summary", interactive=False)
