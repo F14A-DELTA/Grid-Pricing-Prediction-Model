@@ -42,7 +42,13 @@ TARGET_SUFFIX_MAP = {
     "demand_mw": "demand",
     "gen_wind_mw": "gen_wind",
     "gen_coal_black_mw": "gen_coal_black",
-    "gen_coal_brown_mw": "gen_coal_brown"
+    "gen_coal_brown_mw": "gen_coal_brown",
+    "gen_solar_utility_mw": "gen_solar_utility",
+    "gen_solar_rooftop_mw": "gen_solar_rooftop",
+    "gen_hydro_mw": "gen_hydro",
+    "gen_battery_discharging_mw": "gen_battery_discharging",
+    "gen_gas_mw": "gen_gas",
+    "renewables_pct": "renewables_pct",
 }
 
 
@@ -182,8 +188,15 @@ def fetch_recent_region_series(api_key: str, lookback_minutes: int = DEFAULT_LOO
             wind_mw = 0.0
             coal_black_mw = 0.0
             coal_brown_mw = 0.0
+            solar_utility_mw = 0.0
+            solar_rooftop_mw = 0.0
+            hydro_mw = 0.0
+            battery_discharging_mw = 0.0
+            gas_mw = 0.0
             total_net_power = 0.0
             renewables_mw = 0.0
+
+            GAS_FUELTECHS = {"gas_ccgt", "gas_ocgt", "gas_steam", "gas_recip"}
 
             for item in generation_items:
                 fueltech = str(item.get("fueltech", ""))
@@ -199,6 +212,16 @@ def fetch_recent_region_series(api_key: str, lookback_minutes: int = DEFAULT_LOO
                     coal_black_mw = power
                 elif fueltech == "coal_brown":
                     coal_brown_mw = power
+                elif fueltech == "solar_utility":
+                    solar_utility_mw = power
+                elif fueltech == "solar_rooftop":
+                    solar_rooftop_mw = power
+                elif fueltech == "hydro":
+                    hydro_mw = power
+                elif fueltech == "battery_discharging":
+                    battery_discharging_mw = power
+                elif fueltech in GAS_FUELTECHS:
+                    gas_mw += power
 
             renewables_pct = (renewables_mw / total_net_power * 100.0) if total_net_power > 0 else float("nan")
 
@@ -208,6 +231,13 @@ def fetch_recent_region_series(api_key: str, lookback_minutes: int = DEFAULT_LOO
             row[f"{region}_gen_wind_mw"] = wind_mw
             row[f"{region}_gen_coal_black_mw"] = coal_black_mw
             row[f"{region}_gen_coal_brown_mw"] = coal_brown_mw
+            row[f"{region}_gen_solar_utility_mw"] = solar_utility_mw
+            row[f"{region}_gen_solar_rooftop_mw"] = solar_rooftop_mw
+            row[f"{region}_gen_hydro_mw"] = hydro_mw
+            row[f"{region}_gen_battery_discharging_mw"] = battery_discharging_mw
+            row[f"{region}_gen_gas_mw"] = gas_mw
+            row[f"{region}_curtailment_solar"] = to_float(market_item.get("curtailment_solar_utility"))
+            row[f"{region}_curtailment_wind"]  = to_float(market_item.get("curtailment_wind"))
 
         region_snapshots.append(row)
 
@@ -262,6 +292,47 @@ def build_feature_row(region_series: list[dict[str, Any]]) -> dict[str, float | 
         feature_row[f"{region}_wind_ramp_6"] = current_wind - feature_row[f"{region}_wind_rollmean_6"]
         feature_row[f"{region}_wind_ramp_12"] = current_wind - feature_row[f"{region}_wind_rollmean_12"]
         feature_row[f"{region}_wind_share_change"] = current_wind * current_renewables / 100.0
+
+        # Solar utility
+        solar_u = [to_float(s.get(f"{region}_gen_solar_utility_mw")) for s in snapshots]
+        feature_row[f"{region}_gen_solar_utility_mw"]         = solar_u[-1]
+        feature_row[f"{region}_solar_utility_lag_1"]          = solar_u[-2]
+        feature_row[f"{region}_solar_utility_lag_6"]          = solar_u[-7]
+        feature_row[f"{region}_solar_utility_rollmean_6"]     = mean(solar_u[-6:])
+        feature_row[f"{region}_solar_utility_rollmean_12"]    = mean(solar_u[-12:])
+        feature_row[f"{region}_solar_utility_ramp_1"]         = solar_u[-1] - solar_u[-2]
+        feature_row[f"{region}_solar_utility_ramp_6"]         = solar_u[-1] - mean(solar_u[-6:])
+
+        # Hydro
+        hydro = [to_float(s.get(f"{region}_gen_hydro_mw")) for s in snapshots]
+        feature_row[f"{region}_gen_hydro_mw"]                 = hydro[-1]
+        feature_row[f"{region}_hydro_lag_1"]                  = hydro[-2]
+        feature_row[f"{region}_hydro_rollmean_6"]             = mean(hydro[-6:])
+        feature_row[f"{region}_hydro_ramp_6"]                 = hydro[-1] - mean(hydro[-6:])
+
+        # Battery
+        batt = [to_float(s.get(f"{region}_gen_battery_discharging_mw")) for s in snapshots]
+        feature_row[f"{region}_gen_battery_discharging_mw"]   = batt[-1]
+        feature_row[f"{region}_battery_lag_1"]                = batt[-2]
+        feature_row[f"{region}_battery_rollmean_6"]           = mean(batt[-6:])
+
+        # Gas
+        gas = [to_float(s.get(f"{region}_gen_gas_mw")) for s in snapshots]
+        feature_row[f"{region}_gen_gas_mw"]                   = gas[-1]
+        feature_row[f"{region}_gas_lag_1"]                    = gas[-2]
+        feature_row[f"{region}_gas_rollmean_6"]               = mean(gas[-6:])
+        feature_row[f"{region}_gas_ramp_6"]                   = gas[-1] - mean(gas[-6:])
+
+        # Renewables pct
+        renew = [to_float(s.get(f"{region}_renewables_pct")) for s in snapshots]
+        feature_row[f"{region}_renewables_pct"]               = renew[-1]
+        feature_row[f"{region}_renewables_lag_1"]             = renew[-2]
+        feature_row[f"{region}_renewables_rollmean_6"]        = mean(renew[-6:])
+        feature_row[f"{region}_renewables_ramp_6"]            = renew[-1] - mean(renew[-6:])
+
+        # Curtailment
+        feature_row[f"{region}_curtailment_solar"]            = to_float(snapshots[-1].get(f"{region}_curtailment_solar"))
+        feature_row[f"{region}_curtailment_wind"]             = to_float(snapshots[-1].get(f"{region}_curtailment_wind"))
 
     feature_row["hour_sin"] = float(np.sin(2 * np.pi * float(feature_row["hour"]) / 24))
     feature_row["hour_cos"] = float(np.cos(2 * np.pi * float(feature_row["hour"]) / 24))
