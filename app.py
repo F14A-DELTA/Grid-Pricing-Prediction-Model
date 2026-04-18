@@ -56,7 +56,6 @@ def build_dataframe(payload: dict[str, Any]) -> pd.DataFrame:
         "gen_coal_black": "Black Coal",
         "gen_coal_brown": "Brown Coal",
         "gen_solar_utility": "Solar (Grid)",
-        "gen_solar_rooftop": "Solar (Rooftop)",
         "gen_hydro": "Hydro",
         "gen_battery_discharging": "Battery",
         "renewables_pct": "Renewables %",

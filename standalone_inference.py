@@ -44,7 +44,6 @@ TARGET_SUFFIX_MAP = {
     "gen_coal_black_mw": "gen_coal_black",
     "gen_coal_brown_mw": "gen_coal_brown",
     "gen_solar_utility_mw": "gen_solar_utility",
-    "gen_solar_rooftop_mw": "gen_solar_rooftop",
     "gen_hydro_mw": "gen_hydro",
     "gen_battery_discharging_mw": "gen_battery_discharging",
     "renewables_pct": "renewables_pct",
@@ -188,7 +187,6 @@ def fetch_recent_region_series(api_key: str, lookback_minutes: int = DEFAULT_LOO
             coal_black_mw = 0.0
             coal_brown_mw = 0.0
             solar_utility_mw = 0.0
-            solar_rooftop_mw = 0.0
             hydro_mw = 0.0
             battery_discharging_mw = 0.0
             gas_mw = 0.0
@@ -213,8 +211,6 @@ def fetch_recent_region_series(api_key: str, lookback_minutes: int = DEFAULT_LOO
                     coal_brown_mw = power
                 elif fueltech == "solar_utility":
                     solar_utility_mw = power
-                elif fueltech == "solar_rooftop":
-                    solar_rooftop_mw = power
                 elif fueltech == "hydro":
                     hydro_mw = power
                 elif fueltech == "battery_discharging":
@@ -231,7 +227,6 @@ def fetch_recent_region_series(api_key: str, lookback_minutes: int = DEFAULT_LOO
             row[f"{region}_gen_coal_black_mw"] = coal_black_mw
             row[f"{region}_gen_coal_brown_mw"] = coal_brown_mw
             row[f"{region}_gen_solar_utility_mw"] = solar_utility_mw
-            row[f"{region}_gen_solar_rooftop_mw"] = solar_rooftop_mw
             row[f"{region}_gen_hydro_mw"] = hydro_mw
             row[f"{region}_gen_battery_discharging_mw"] = battery_discharging_mw
             row[f"{region}_curtailment_solar"] = to_float(market_item.get("curtailment_solar_utility"))
@@ -434,6 +429,10 @@ def generate_prediction_payload(
                 
                 predicted_residual = predict_residual(model, model_input)
                 predicted_value = current_val + alpha * predicted_residual
+
+                NON_NEGATIVE_METRICS = {"gen_hydro", "gen_battery_discharging", "gen_solar_utility", "gen_wind", "gen_coal_black", "gen_coal_brown", "demand"}
+                if clean_suffix in NON_NEGATIVE_METRICS:
+                    predicted_value = max(0.0, predicted_value)
 
                 region_data["forecasts"][horizon_label][clean_suffix] = {
                     "model_name": metadata["model_name"],
