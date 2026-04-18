@@ -1,0 +1,9 @@
+# Ignore model binary artifacts that are not supported in Hugging Face Spaces
+multi_horizon/*.pkl
+multi_horizon/*.joblib
+multi_horizon/*.pickle
+
+# Ignore any local experiment or cache files
+__pycache__/
+*.py[cod]
+*.log
