@@ -59,7 +59,6 @@ def build_dataframe(payload: dict[str, Any]) -> pd.DataFrame:
         "gen_solar_rooftop": "Solar (Rooftop)",
         "gen_hydro": "Hydro",
         "gen_battery_discharging": "Battery",
-        "gen_gas": "Gas",
         "renewables_pct": "Renewables %",
     }
 

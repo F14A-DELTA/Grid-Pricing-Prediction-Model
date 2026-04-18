@@ -70,8 +70,8 @@
   ],
   "prediction_rule": "current_value + alpha * model_predicted_residual",
   "alpha": 1.0,
-  "validation_mae": 9.003461008642777,
-  "validation_rmse": 20.627832810687487,
+  "validation_mae": 8.980053675523502,
+  "validation_rmse": 20.614997729161505,
   "baseline_mae": 9.533795756297305,
   "baseline_rmse": 21.768957742190782
 }

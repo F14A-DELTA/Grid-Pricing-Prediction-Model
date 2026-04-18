@@ -47,7 +47,6 @@ TARGET_SUFFIX_MAP = {
     "gen_solar_rooftop_mw": "gen_solar_rooftop",
     "gen_hydro_mw": "gen_hydro",
     "gen_battery_discharging_mw": "gen_battery_discharging",
-    "gen_gas_mw": "gen_gas",
     "renewables_pct": "renewables_pct",
 }
 
@@ -235,7 +234,6 @@ def fetch_recent_region_series(api_key: str, lookback_minutes: int = DEFAULT_LOO
             row[f"{region}_gen_solar_rooftop_mw"] = solar_rooftop_mw
             row[f"{region}_gen_hydro_mw"] = hydro_mw
             row[f"{region}_gen_battery_discharging_mw"] = battery_discharging_mw
-            row[f"{region}_gen_gas_mw"] = gas_mw
             row[f"{region}_curtailment_solar"] = to_float(market_item.get("curtailment_solar_utility"))
             row[f"{region}_curtailment_wind"]  = to_float(market_item.get("curtailment_wind"))
 
@@ -315,13 +313,6 @@ def build_feature_row(region_series: list[dict[str, Any]]) -> dict[str, float | 
         feature_row[f"{region}_gen_battery_discharging_mw"]   = batt[-1]
         feature_row[f"{region}_battery_lag_1"]                = batt[-2]
         feature_row[f"{region}_battery_rollmean_6"]           = mean(batt[-6:])
-
-        # Gas
-        gas = [to_float(s.get(f"{region}_gen_gas_mw")) for s in snapshots]
-        feature_row[f"{region}_gen_gas_mw"]                   = gas[-1]
-        feature_row[f"{region}_gas_lag_1"]                    = gas[-2]
-        feature_row[f"{region}_gas_rollmean_6"]               = mean(gas[-6:])
-        feature_row[f"{region}_gas_ramp_6"]                   = gas[-1] - mean(gas[-6:])
 
         # Renewables pct
         renew = [to_float(s.get(f"{region}_renewables_pct")) for s in snapshots]

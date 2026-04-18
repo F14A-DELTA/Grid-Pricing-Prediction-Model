@@ -5,7 +5,7 @@
   "target_column": "NSW1_target_demand_mw_t_plus_3",
   "current_val_column": "NSW1_demand_mw",
   "horizon_steps": 3,
-  "horizon_minutes": 15, 
+  "horizon_minutes": 15,
   "horizon_label": "15m",
   "feature_columns": [
     "NSW1_price_dollar_per_mwh",
@@ -70,8 +70,8 @@
   ],
   "prediction_rule": "current_value + alpha * model_predicted_residual",
   "alpha": 1.0,
-  "validation_mae": 73.61503088693848,
-  "validation_rmse": 95.62661694442107,
+  "validation_mae": 73.55627064809988,
+  "validation_rmse": 95.57467923042984,
   "baseline_mae": 111.25089307864054,
   "baseline_rmse": 140.79288254028145
 }
