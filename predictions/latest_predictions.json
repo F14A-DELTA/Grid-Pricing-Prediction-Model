@@ -1,6 +1,6 @@
 {
-  "prediction_generated_at": "2026-04-11T14:33:20Z",
-  "source_snapshot_at": "2026-04-12T00:25:00+10:00",
+  "prediction_generated_at": "2026-04-18T05:43:36Z",
+  "source_snapshot_at": "2026-04-18T15:35:00+10:00",
   "prediction_horizons_minutes": [
     5,
     15,
@@ -8,15 +8,19 @@
   ],
   "regions": [
     {
-      "prediction_generated_at": "2026-04-11T14:33:20Z",
-      "source_snapshot_at": "2026-04-12T00:25:00+10:00",
+      "prediction_generated_at": "2026-04-18T05:43:36Z",
+      "source_snapshot_at": "2026-04-18T15:35:00+10:00",
       "region": "NSW1",
       "current_values": {
-        "price": 76.91,
-        "demand": 6829.56,
-        "gen_wind": 1580.68,
-        "gen_coal_black": 5291.8502,
-        "gen_coal_brown": 0.0
+        "price": -3.0,
+        "demand": 5724.74,
+        "gen_wind": 246.3135,
+        "gen_coal_black": 3441.6246,
+        "gen_coal_brown": 0.0,
+        "gen_solar_utility": 2715.0749,
+        "gen_hydro": 19.4156,
+        "gen_battery_discharging": 12.1474,
+        "renewables_pct": 46.33132722587288
       },
       "forecasts": {
         "5m": {
@@ -25,32 +29,32 @@
             "alpha": 1.0,
             "horizon_steps": 1,
             "horizon_minutes": 5,
-            "predicted_residual": -1.422359525806775,
-            "predicted_value": 75.48764047419323
+            "predicted_residual": 0.23764136674683728,
+            "predicted_value": -2.7623586332531627
           },
           "demand": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 1.0,
             "horizon_steps": 1,
             "horizon_minutes": 5,
-            "predicted_residual": -12.243020902053566,
-            "predicted_value": 6817.316979097946
+            "predicted_residual": 28.93523535040258,
+            "predicted_value": 5753.6752353504025
           },
           "gen_wind": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 1.0,
             "horizon_steps": 1,
             "horizon_minutes": 5,
-            "predicted_residual": -0.504802804385162,
-            "predicted_value": 1580.1751971956148
+            "predicted_residual": -2.0590929510889056,
+            "predicted_value": 244.2544070489111
           },
           "gen_coal_black": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 1.0,
             "horizon_steps": 1,
             "horizon_minutes": 5,
-            "predicted_residual": 1.794385278837004,
-            "predicted_value": 5293.6445852788365
+            "predicted_residual": 32.91110701376561,
+            "predicted_value": 3474.5357070137657
           },
           "gen_coal_brown": {
             "model_name": "lightgbm_residual_blend",
@@ -59,6 +63,38 @@
             "horizon_minutes": 5,
             "predicted_residual": 0.0,
             "predicted_value": 0.0
+          },
+          "gen_solar_utility": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": -6.085720538383435,
+            "predicted_value": 2708.9891794616165
+          },
+          "gen_hydro": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 0.49644122852134104,
+            "predicted_value": 19.912041228521343
+          },
+          "gen_battery_discharging": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.6000000000000001,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 0.5880319168226015,
+            "predicted_value": 12.50021915009356
+          },
+          "renewables_pct": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 1.8153668730581805,
+            "predicted_value": 48.146694098931064
           }
         },
         "15m": {
@@ -67,32 +103,32 @@
             "alpha": 1.0,
             "horizon_steps": 3,
             "horizon_minutes": 15,
-            "predicted_residual": -4.0370719692766555,
-            "predicted_value": 72.87292803072334
+            "predicted_residual": 1.345273822324785,
+            "predicted_value": -1.654726177675215
           },
           "demand": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 1.0,
             "horizon_steps": 3,
             "horizon_minutes": 15,
-            "predicted_residual": -18.267242571803585,
-            "predicted_value": 6811.292757428197
+            "predicted_residual": 106.503738800958,
+            "predicted_value": 5831.2437388009575
           },
           "gen_wind": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 0.9,
             "horizon_steps": 3,
             "horizon_minutes": 15,
-            "predicted_residual": 4.4297646138280795,
-            "predicted_value": 1584.6667881524454
+            "predicted_residual": -0.7166857751671671,
+            "predicted_value": 245.66848280234956
           },
           "gen_coal_black": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 1.0,
             "horizon_steps": 3,
             "horizon_minutes": 15,
-            "predicted_residual": -11.18251112673101,
-            "predicted_value": 5280.667688873269
+            "predicted_residual": 111.4900387885797,
+            "predicted_value": 3553.1146387885797
           },
           "gen_coal_brown": {
             "model_name": "lightgbm_residual_blend",
@@ -101,460 +137,72 @@
             "horizon_minutes": 15,
             "predicted_residual": 0.0,
             "predicted_value": 0.0
-          }
-        },
-        "30m": {
-          "price": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.9500000000000001,
-            "horizon_steps": 6,
-            "horizon_minutes": 30,
-            "predicted_residual": -4.931109750424061,
-            "predicted_value": 72.22544573709713
           },
-          "demand": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 6,
-            "horizon_minutes": 30,
-            "predicted_residual": -42.0807160535087,
-            "predicted_value": 6787.479283946492
-          },
-          "gen_wind": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.8500000000000001,
-            "horizon_steps": 6,
-            "horizon_minutes": 30,
-            "predicted_residual": 5.323365176301029,
-            "predicted_value": 1585.204860399856
-          },
-          "gen_coal_black": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 6,
-            "horizon_minutes": 30,
-            "predicted_residual": -34.01681440580047,
-            "predicted_value": 5257.833385594199
-          },
-          "gen_coal_brown": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.0,
-            "horizon_steps": 6,
-            "horizon_minutes": 30,
-            "predicted_residual": 0.0,
-            "predicted_value": 0.0
-          }
-        }
-      }
-    },
-    {
-      "prediction_generated_at": "2026-04-11T14:33:20Z",
-      "source_snapshot_at": "2026-04-12T00:25:00+10:00",
-      "region": "QLD1",
-      "current_values": {
-        "price": 85.83,
-        "demand": 6116.72,
-        "gen_wind": 820.074,
-        "gen_coal_black": 4515.3134,
-        "gen_coal_brown": 0.0
-      },
-      "forecasts": {
-        "5m": {
-          "price": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 1,
-            "horizon_minutes": 5,
-            "predicted_residual": 3.93507405755878,
-            "predicted_value": 89.76507405755878
-          },
-          "demand": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 1,
-            "horizon_minutes": 5,
-            "predicted_residual": 3.5473497710630153,
-            "predicted_value": 6120.267349771063
-          },
-          "gen_wind": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 1,
-            "horizon_minutes": 5,
-            "predicted_residual": 10.340772710845501,
-            "predicted_value": 830.4147727108455
-          },
-          "gen_coal_black": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.9,
-            "horizon_steps": 1,
-            "horizon_minutes": 5,
-            "predicted_residual": -29.77823222891078,
-            "predicted_value": 4488.512990993981
-          },
-          "gen_coal_brown": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.0,
-            "horizon_steps": 1,
-            "horizon_minutes": 5,
-            "predicted_residual": 0.0,
-            "predicted_value": 0.0
-          }
-        },
-        "15m": {
-          "price": {
+          "gen_solar_utility": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 1.0,
             "horizon_steps": 3,
             "horizon_minutes": 15,
-            "predicted_residual": 2.258159897197204,
-            "predicted_value": 88.0881598971972
+            "predicted_residual": -28.42399752561901,
+            "predicted_value": 2686.650902474381
           },
-          "demand": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 3,
-            "horizon_minutes": 15,
-            "predicted_residual": -7.241365571738328,
-            "predicted_value": 6109.478634428262
-          },
-          "gen_wind": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.9500000000000001,
-            "horizon_steps": 3,
-            "horizon_minutes": 15,
-            "predicted_residual": 6.615273564612121,
-            "predicted_value": 826.3585098863815
-          },
-          "gen_coal_black": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.9500000000000001,
-            "horizon_steps": 3,
-            "horizon_minutes": 15,
-            "predicted_residual": -45.03855608278653,
-            "predicted_value": 4472.526771721353
-          },
-          "gen_coal_brown": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.0,
-            "horizon_steps": 3,
-            "horizon_minutes": 15,
-            "predicted_residual": 0.0,
-            "predicted_value": 0.0
-          }
-        },
-        "30m": {
-          "price": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 6,
-            "horizon_minutes": 30,
-            "predicted_residual": -1.1423153795510448,
-            "predicted_value": 84.68768462044895
-          },
-          "demand": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 6,
-            "horizon_minutes": 30,
-            "predicted_residual": 1.339210860485743,
-            "predicted_value": 6118.059210860486
-          },
-          "gen_wind": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.9,
-            "horizon_steps": 6,
-            "horizon_minutes": 30,
-            "predicted_residual": -4.245302071823311,
-            "predicted_value": 816.253228135359
-          },
-          "gen_coal_black": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.9500000000000001,
-            "horizon_steps": 6,
-            "horizon_minutes": 30,
-            "predicted_residual": -59.858977419006045,
-            "predicted_value": 4458.4473714519445
-          },
-          "gen_coal_brown": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.0,
-            "horizon_steps": 6,
-            "horizon_minutes": 30,
-            "predicted_residual": 0.0,
-            "predicted_value": 0.0
-          }
-        }
-      }
-    },
-    {
-      "prediction_generated_at": "2026-04-11T14:33:20Z",
-      "source_snapshot_at": "2026-04-12T00:25:00+10:00",
-      "region": "SA1",
-      "current_values": {
-        "price": -2.3,
-        "demand": 1444.44,
-        "gen_wind": 1479.6362,
-        "gen_coal_black": 0.0,
-        "gen_coal_brown": 0.0
-      },
-      "forecasts": {
-        "5m": {
-          "price": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 1,
-            "horizon_minutes": 5,
-            "predicted_residual": 0.03542372624425637,
-            "predicted_value": -2.2645762737557433
-          },
-          "demand": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 1,
-            "horizon_minutes": 5,
-            "predicted_residual": -2.498767860169143,
-            "predicted_value": 1441.9412321398308
-          },
-          "gen_wind": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 1,
-            "horizon_minutes": 5,
-            "predicted_residual": 5.30673669805597,
-            "predicted_value": 1484.942936698056
-          },
-          "gen_coal_black": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.0,
-            "horizon_steps": 1,
-            "horizon_minutes": 5,
-            "predicted_residual": 0.0,
-            "predicted_value": 0.0
-          },
-          "gen_coal_brown": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.0,
-            "horizon_steps": 1,
-            "horizon_minutes": 5,
-            "predicted_residual": 0.0,
-            "predicted_value": 0.0
-          }
-        },
-        "15m": {
-          "price": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 3,
-            "horizon_minutes": 15,
-            "predicted_residual": 0.09060567153665162,
-            "predicted_value": -2.209394328463348
-          },
-          "demand": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 3,
-            "horizon_minutes": 15,
-            "predicted_residual": -7.807335733914909,
-            "predicted_value": 1436.6326642660852
-          },
-          "gen_wind": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 3,
-            "horizon_minutes": 15,
-            "predicted_residual": -3.4574222993126438,
-            "predicted_value": 1476.1787777006873
-          },
-          "gen_coal_black": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.0,
-            "horizon_steps": 3,
-            "horizon_minutes": 15,
-            "predicted_residual": 0.0,
-            "predicted_value": 0.0
-          },
-          "gen_coal_brown": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.0,
-            "horizon_steps": 3,
-            "horizon_minutes": 15,
-            "predicted_residual": 0.0,
-            "predicted_value": 0.0
-          }
-        },
-        "30m": {
-          "price": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 6,
-            "horizon_minutes": 30,
-            "predicted_residual": 0.5965813483504242,
-            "predicted_value": -1.7034186516495757
-          },
-          "demand": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 6,
-            "horizon_minutes": 30,
-            "predicted_residual": -15.705702077538502,
-            "predicted_value": 1428.7342979224616
-          },
-          "gen_wind": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 6,
-            "horizon_minutes": 30,
-            "predicted_residual": -41.433640714929155,
-            "predicted_value": 1438.2025592850707
-          },
-          "gen_coal_black": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.0,
-            "horizon_steps": 6,
-            "horizon_minutes": 30,
-            "predicted_residual": 0.0,
-            "predicted_value": 0.0
-          },
-          "gen_coal_brown": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.0,
-            "horizon_steps": 6,
-            "horizon_minutes": 30,
-            "predicted_residual": 0.0,
-            "predicted_value": 0.0
-          }
-        }
-      }
-    },
-    {
-      "prediction_generated_at": "2026-04-11T14:33:20Z",
-      "source_snapshot_at": "2026-04-12T00:25:00+10:00",
-      "region": "TAS1",
-      "current_values": {
-        "price": 69.22,
-        "demand": 928.2,
-        "gen_wind": 489.5573,
-        "gen_coal_black": 0.0,
-        "gen_coal_brown": 0.0
-      },
-      "forecasts": {
-        "5m": {
-          "price": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 1,
-            "horizon_minutes": 5,
-            "predicted_residual": 0.0026084802540784053,
-            "predicted_value": 69.22260848025408
-          },
-          "demand": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 1,
-            "horizon_minutes": 5,
-            "predicted_residual": -0.8457421874812686,
-            "predicted_value": 927.3542578125188
-          },
-          "gen_wind": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.55,
-            "horizon_steps": 1,
-            "horizon_minutes": 5,
-            "predicted_residual": -0.39125990710710173,
-            "predicted_value": 489.3421070510911
-          },
-          "gen_coal_black": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.0,
-            "horizon_steps": 1,
-            "horizon_minutes": 5,
-            "predicted_residual": 0.0,
-            "predicted_value": 0.0
-          },
-          "gen_coal_brown": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 0.0,
-            "horizon_steps": 1,
-            "horizon_minutes": 5,
-            "predicted_residual": 0.0,
-            "predicted_value": 0.0
-          }
-        },
-        "15m": {
-          "price": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 3,
-            "horizon_minutes": 15,
-            "predicted_residual": -0.007250878530293862,
-            "predicted_value": 69.2127491214697
-          },
-          "demand": {
-            "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
-            "horizon_steps": 3,
-            "horizon_minutes": 15,
-            "predicted_residual": -2.606913985254289,
-            "predicted_value": 925.5930860147457
-          },
-          "gen_wind": {
+          "gen_hydro": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 0.8,
             "horizon_steps": 3,
             "horizon_minutes": 15,
-            "predicted_residual": 2.0804718764237133,
-            "predicted_value": 491.22167750113897
+            "predicted_residual": 3.375151131882303,
+            "predicted_value": 22.115720905505846
           },
-          "gen_coal_black": {
+          "gen_battery_discharging": {
             "model_name": "lightgbm_residual_blend",
-            "alpha": 0.0,
+            "alpha": 1.0,
             "horizon_steps": 3,
             "horizon_minutes": 15,
-            "predicted_residual": 0.0,
-            "predicted_value": 0.0
+            "predicted_residual": 2.245403886677778,
+            "predicted_value": 14.392803886677777
           },
-          "gen_coal_brown": {
+          "renewables_pct": {
             "model_name": "lightgbm_residual_blend",
-            "alpha": 0.0,
+            "alpha": 1.0,
             "horizon_steps": 3,
             "horizon_minutes": 15,
-            "predicted_residual": 0.0,
-            "predicted_value": 0.0
+            "predicted_residual": 2.940506923301961,
+            "predicted_value": 49.27183414917484
           }
         },
         "30m": {
           "price": {
             "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
+            "alpha": 0.9500000000000001,
             "horizon_steps": 6,
             "horizon_minutes": 30,
-            "predicted_residual": -0.21249485726667372,
-            "predicted_value": 69.00750514273332
+            "predicted_residual": 3.3977434142338883,
+            "predicted_value": 0.22785624352219402
           },
           "demand": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 1.0,
             "horizon_steps": 6,
             "horizon_minutes": 30,
-            "predicted_residual": -8.447606050345398,
-            "predicted_value": 919.7523939496547
+            "predicted_residual": 263.4042117797852,
+            "predicted_value": 5988.144211779785
           },
           "gen_wind": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 0.8500000000000001,
             "horizon_steps": 6,
             "horizon_minutes": 30,
-            "predicted_residual": -2.418769523914386,
-            "predicted_value": 487.50134590467275
+            "predicted_residual": 5.185427790410469,
+            "predicted_value": 250.7211136218489
           },
           "gen_coal_black": {
             "model_name": "lightgbm_residual_blend",
-            "alpha": 0.0,
+            "alpha": 1.0,
             "horizon_steps": 6,
             "horizon_minutes": 30,
-            "predicted_residual": 0.0,
-            "predicted_value": 0.0
+            "predicted_residual": 235.8629740274692,
+            "predicted_value": 3677.4875740274692
           },
           "gen_coal_brown": {
             "model_name": "lightgbm_residual_blend",
@@ -563,20 +211,56 @@
             "horizon_minutes": 30,
             "predicted_residual": 0.0,
             "predicted_value": 0.0
+          },
+          "gen_solar_utility": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": -74.71164047042485,
+            "predicted_value": 2640.3632595295753
+          },
+          "gen_hydro": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.65,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 8.80531340419653,
+            "predicted_value": 25.139053712727748
+          },
+          "gen_battery_discharging": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 0.8886587405762377,
+            "predicted_value": 13.036058740576237
+          },
+          "renewables_pct": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 0.8003765695105732,
+            "predicted_value": 47.13170379538346
           }
         }
       }
     },
     {
-      "prediction_generated_at": "2026-04-11T14:33:20Z",
-      "source_snapshot_at": "2026-04-12T00:25:00+10:00",
-      "region": "VIC1",
+      "prediction_generated_at": "2026-04-18T05:43:36Z",
+      "source_snapshot_at": "2026-04-18T15:35:00+10:00",
+      "region": "QLD1",
       "current_values": {
-        "price": -2.5,
-        "demand": 4610.11,
-        "gen_wind": 2780.5814,
-        "gen_coal_black": 0.0,
-        "gen_coal_brown": 2680.3438
+        "price": -2.61,
+        "demand": 6109.32,
+        "gen_wind": 145.651,
+        "gen_coal_black": 3667.8275,
+        "gen_coal_brown": 0.0,
+        "gen_solar_utility": 2405.1378,
+        "gen_hydro": 102.275,
+        "gen_battery_discharging": 5.7807,
+        "renewables_pct": 40.528777168697395
       },
       "forecasts": {
         "5m": {
@@ -585,26 +269,34 @@
             "alpha": 1.0,
             "horizon_steps": 1,
             "horizon_minutes": 5,
-            "predicted_residual": -0.01041824739938622,
-            "predicted_value": -2.5104182473993863
+            "predicted_residual": 0.2197507361032657,
+            "predicted_value": -2.390249263896734
           },
           "demand": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 1.0,
             "horizon_steps": 1,
             "horizon_minutes": 5,
-            "predicted_residual": -8.42636097003405,
-            "predicted_value": 4601.683639029966
+            "predicted_residual": -8.64888893893208,
+            "predicted_value": 6100.671111061068
           },
           "gen_wind": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 1.0,
             "horizon_steps": 1,
             "horizon_minutes": 5,
-            "predicted_residual": 19.386184311286463,
-            "predicted_value": 2799.9675843112864
+            "predicted_residual": -0.731422905898611,
+            "predicted_value": 144.9195770941014
           },
           "gen_coal_black": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.9,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 8.568488620905987,
+            "predicted_value": 3675.539139758815
+          },
+          "gen_coal_brown": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 0.0,
             "horizon_steps": 1,
@@ -612,13 +304,37 @@
             "predicted_residual": 0.0,
             "predicted_value": 0.0
           },
-          "gen_coal_brown": {
+          "gen_solar_utility": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 1.0,
             "horizon_steps": 1,
             "horizon_minutes": 5,
-            "predicted_residual": -6.606451812452177,
-            "predicted_value": 2673.737348187548
+            "predicted_residual": -8.612358901936068,
+            "predicted_value": 2396.5254410980638
+          },
+          "gen_hydro": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.8500000000000001,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 0.07729530457340515,
+            "predicted_value": 102.3407010088874
+          },
+          "gen_battery_discharging": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.9500000000000001,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 0.31257025799737675,
+            "predicted_value": 6.077641745097508
+          },
+          "renewables_pct": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 2.6664745646074013,
+            "predicted_value": 43.195251733304794
           }
         },
         "15m": {
@@ -627,26 +343,34 @@
             "alpha": 1.0,
             "horizon_steps": 3,
             "horizon_minutes": 15,
-            "predicted_residual": -0.3040687265355079,
-            "predicted_value": -2.8040687265355078
+            "predicted_residual": 1.6646205828779121,
+            "predicted_value": -0.9453794171220877
           },
           "demand": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 1.0,
             "horizon_steps": 3,
             "horizon_minutes": 15,
-            "predicted_residual": -9.322230088400664,
-            "predicted_value": 4600.787769911599
+            "predicted_residual": 59.40614956449169,
+            "predicted_value": 6168.726149564492
           },
           "gen_wind": {
             "model_name": "lightgbm_residual_blend",
-            "alpha": 1.0,
+            "alpha": 0.9500000000000001,
             "horizon_steps": 3,
             "horizon_minutes": 15,
-            "predicted_residual": -14.530542952185998,
-            "predicted_value": 2766.050857047814
+            "predicted_residual": -3.323217988534621,
+            "predicted_value": 142.49394291089212
           },
           "gen_coal_black": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.9500000000000001,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 48.461102477808254,
+            "predicted_value": 3713.865547353918
+          },
+          "gen_coal_brown": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 0.0,
             "horizon_steps": 3,
@@ -654,13 +378,37 @@
             "predicted_residual": 0.0,
             "predicted_value": 0.0
           },
-          "gen_coal_brown": {
+          "gen_solar_utility": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 1.0,
             "horizon_steps": 3,
             "horizon_minutes": 15,
-            "predicted_residual": -12.312819072617803,
-            "predicted_value": 2668.030980927382
+            "predicted_residual": -9.784012083270383,
+            "predicted_value": 2395.3537879167297
+          },
+          "gen_hydro": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.8,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 6.460560447787724,
+            "predicted_value": 107.44344835823019
+          },
+          "gen_battery_discharging": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 5.913598236171961,
+            "predicted_value": 11.69429823617196
+          },
+          "renewables_pct": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 5.7894300377534735,
+            "predicted_value": 46.31820720645087
           }
         },
         "30m": {
@@ -669,24 +417,744 @@
             "alpha": 1.0,
             "horizon_steps": 6,
             "horizon_minutes": 30,
-            "predicted_residual": -0.2713347781342962,
-            "predicted_value": -2.771334778134296
+            "predicted_residual": 4.563278835570268,
+            "predicted_value": 1.9532788355702677
           },
           "demand": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 1.0,
             "horizon_steps": 6,
             "horizon_minutes": 30,
-            "predicted_residual": -15.262741458432725,
-            "predicted_value": 4594.847258541567
+            "predicted_residual": 137.14314320454375,
+            "predicted_value": 6246.4631432045435
+          },
+          "gen_wind": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.9,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": -7.356810700273818,
+            "predicted_value": 139.02987036975358
+          },
+          "gen_coal_black": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.9500000000000001,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 113.78372405011856,
+            "predicted_value": 3775.9220378476125
+          },
+          "gen_coal_brown": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_solar_utility": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": -52.796512798224114,
+            "predicted_value": 2352.3412872017757
+          },
+          "gen_hydro": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.8,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 7.213701909382907,
+            "predicted_value": 108.04596152750634
+          },
+          "gen_battery_discharging": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 12.739193856649973,
+            "predicted_value": 18.519893856649972
+          },
+          "renewables_pct": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 4.432878471384482,
+            "predicted_value": 44.96165564008188
+          }
+        }
+      }
+    },
+    {
+      "prediction_generated_at": "2026-04-18T05:43:36Z",
+      "source_snapshot_at": "2026-04-18T15:35:00+10:00",
+      "region": "SA1",
+      "current_values": {
+        "price": -2.6,
+        "demand": 474.26,
+        "gen_wind": 78.2135,
+        "gen_coal_black": 0.0,
+        "gen_coal_brown": 0.0,
+        "gen_solar_utility": 259.6647,
+        "gen_hydro": 0.0,
+        "gen_battery_discharging": 1.29,
+        "renewables_pct": 80.06206335882405
+      },
+      "forecasts": {
+        "5m": {
+          "price": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 0.8436402958988483,
+            "predicted_value": -1.7563597041011518
+          },
+          "demand": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": -1.9405805345925584,
+            "predicted_value": 472.3194194654074
+          },
+          "gen_wind": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": -1.6722047256141823,
+            "predicted_value": 76.54129527438582
+          },
+          "gen_coal_black": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_coal_brown": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_solar_utility": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.65,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": -1.9887280913926793,
+            "predicted_value": 258.3720267405947
+          },
+          "gen_hydro": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_battery_discharging": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 1.0689577695297012,
+            "predicted_value": 2.3589577695297015
+          },
+          "renewables_pct": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 4.511829130918419,
+            "predicted_value": 84.57389248974246
+          }
+        },
+        "15m": {
+          "price": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 2.180757279276188,
+            "predicted_value": -0.4192427207238123
+          },
+          "demand": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": -0.6281659167128021,
+            "predicted_value": 473.6318340832872
+          },
+          "gen_wind": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": -1.8121379898426255,
+            "predicted_value": 76.40136201015737
+          },
+          "gen_coal_black": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_coal_brown": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_solar_utility": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.75,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": -0.1800344328519928,
+            "predicted_value": 259.529674175361
+          },
+          "gen_hydro": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_battery_discharging": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.9500000000000001,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": -4.216899098459812,
+            "predicted_value": 0.0
+          },
+          "renewables_pct": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.9500000000000001,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 15.110026731102138,
+            "predicted_value": 94.41658875337109
+          }
+        },
+        "30m": {
+          "price": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 4.00724849229093,
+            "predicted_value": 1.4072484922909303
+          },
+          "demand": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": -0.498048930066787,
+            "predicted_value": 473.7619510699332
           },
           "gen_wind": {
             "model_name": "lightgbm_residual_blend",
             "alpha": 1.0,
             "horizon_steps": 6,
             "horizon_minutes": 30,
-            "predicted_residual": -59.51432255393334,
-            "predicted_value": 2721.067077446067
+            "predicted_residual": 12.423129952599584,
+            "predicted_value": 90.63662995259958
+          },
+          "gen_coal_black": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_coal_brown": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_solar_utility": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.7000000000000001,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": -2.4423895359394883,
+            "predicted_value": 257.9550273248423
+          },
+          "gen_hydro": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_battery_discharging": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.8500000000000001,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": -2.610151776481627,
+            "predicted_value": 0.0
+          },
+          "renewables_pct": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.9,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 14.97885588106853,
+            "predicted_value": 93.54303365178572
+          }
+        }
+      }
+    },
+    {
+      "prediction_generated_at": "2026-04-18T05:43:36Z",
+      "source_snapshot_at": "2026-04-18T15:35:00+10:00",
+      "region": "TAS1",
+      "current_values": {
+        "price": 71.54,
+        "demand": 992.84,
+        "gen_wind": 130.5201,
+        "gen_coal_black": 0.0,
+        "gen_coal_brown": 0.0,
+        "gen_solar_utility": 0.0,
+        "gen_hydro": 765.2307,
+        "gen_battery_discharging": 0.0,
+        "renewables_pct": 100.0
+      },
+      "forecasts": {
+        "5m": {
+          "price": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 0.029881659708201665,
+            "predicted_value": 71.5698816597082
+          },
+          "demand": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": -0.6529732853464755,
+            "predicted_value": 992.1870267146536
+          },
+          "gen_wind": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.5,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 0.4502972863342639,
+            "predicted_value": 130.74524864316714
+          },
+          "gen_coal_black": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_coal_brown": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_solar_utility": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_hydro": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.9500000000000001,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": -9.990807542315155,
+            "predicted_value": 755.7394328348006
+          },
+          "gen_battery_discharging": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "renewables_pct": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.15000000000000002,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": -0.0004901622812912142,
+            "predicted_value": 99.9999264756578
+          }
+        },
+        "15m": {
+          "price": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 0.04882399895550909,
+            "predicted_value": 71.58882399895552
+          },
+          "demand": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 1.2597469794411866,
+            "predicted_value": 994.0997469794412
+          },
+          "gen_wind": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.8500000000000001,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 0.8514833421519021,
+            "predicted_value": 131.24386084082914
+          },
+          "gen_coal_black": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_coal_brown": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_solar_utility": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_hydro": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": -2.209833850373797,
+            "predicted_value": 763.0208661496262
+          },
+          "gen_battery_discharging": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "renewables_pct": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.15000000000000002,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": -0.0007075677223610562,
+            "predicted_value": 99.99989386484165
+          }
+        },
+        "30m": {
+          "price": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 0.5668552989572526,
+            "predicted_value": 72.10685529895726
+          },
+          "demand": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 4.602802396014075,
+            "predicted_value": 997.4428023960141
+          },
+          "gen_wind": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.8500000000000001,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 1.3246015496822638,
+            "predicted_value": 131.64601131722995
+          },
+          "gen_coal_black": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_coal_brown": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_solar_utility": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_hydro": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 2.377661927726871,
+            "predicted_value": 767.6083619277268
+          },
+          "gen_battery_discharging": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "renewables_pct": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.1,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": -0.0012774199435728573,
+            "predicted_value": 99.99987225800564
+          }
+        }
+      }
+    },
+    {
+      "prediction_generated_at": "2026-04-18T05:43:36Z",
+      "source_snapshot_at": "2026-04-18T15:35:00+10:00",
+      "region": "VIC1",
+      "current_values": {
+        "price": -2.69,
+        "demand": 3597.51,
+        "gen_wind": 103.5407,
+        "gen_coal_black": 0.0,
+        "gen_coal_brown": 2843.8126,
+        "gen_solar_utility": 1089.7686,
+        "gen_hydro": 0.22,
+        "gen_battery_discharging": 26.3303,
+        "renewables_pct": 29.878574926761516
+      },
+      "forecasts": {
+        "5m": {
+          "price": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 0.0977037842015082,
+            "predicted_value": -2.5922962157984917
+          },
+          "demand": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 8.503663260907265,
+            "predicted_value": 3606.0136632609074
+          },
+          "gen_wind": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 4.857721038477946,
+            "predicted_value": 108.39842103847795
+          },
+          "gen_coal_black": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_coal_brown": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 8.328505652686092,
+            "predicted_value": 2852.1411056526863
+          },
+          "gen_solar_utility": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.9,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": -1.1578825036827571,
+            "predicted_value": 1088.7265057466857
+          },
+          "gen_hydro": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.7000000000000001,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": -3.395347853675474,
+            "predicted_value": 0.0
+          },
+          "gen_battery_discharging": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 2.2184395215243295,
+            "predicted_value": 28.548739521524332
+          },
+          "renewables_pct": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 1,
+            "horizon_minutes": 5,
+            "predicted_residual": 4.0704461811269645,
+            "predicted_value": 33.949021107888484
+          }
+        },
+        "15m": {
+          "price": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 1.0888249537684156,
+            "predicted_value": -1.6011750462315844
+          },
+          "demand": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 32.25809937691221,
+            "predicted_value": 3629.7680993769122
+          },
+          "gen_wind": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 25.72979785176408,
+            "predicted_value": 129.27049785176408
+          },
+          "gen_coal_black": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 0.0,
+            "predicted_value": 0.0
+          },
+          "gen_coal_brown": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 37.63259220676294,
+            "predicted_value": 2881.4451922067633
+          },
+          "gen_solar_utility": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.8500000000000001,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 7.112104006545608,
+            "predicted_value": 1095.8138884055638
+          },
+          "gen_hydro": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.9500000000000001,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": -7.409945820797026,
+            "predicted_value": 0.0
+          },
+          "gen_battery_discharging": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 2.781023243114049,
+            "predicted_value": 29.11132324311405
+          },
+          "renewables_pct": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 3,
+            "horizon_minutes": 15,
+            "predicted_residual": 12.693250781019339,
+            "predicted_value": 42.57182570778085
+          }
+        },
+        "30m": {
+          "price": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 1.6829504060108864,
+            "predicted_value": -1.0070495939891135
+          },
+          "demand": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 95.63587539923512,
+            "predicted_value": 3693.145875399235
+          },
+          "gen_wind": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 57.16258418626425,
+            "predicted_value": 160.70328418626426
           },
           "gen_coal_black": {
             "model_name": "lightgbm_residual_blend",
@@ -701,8 +1169,40 @@
             "alpha": 1.0,
             "horizon_steps": 6,
             "horizon_minutes": 30,
-            "predicted_residual": -39.15597312916557,
-            "predicted_value": 2641.1878268708347
+            "predicted_residual": 99.51788586162198,
+            "predicted_value": 2943.330485861622
+          },
+          "gen_solar_utility": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 0.8500000000000001,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 13.20346572885147,
+            "predicted_value": 1100.9915458695239
+          },
+          "gen_hydro": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": -17.163360455815543,
+            "predicted_value": 0.0
+          },
+          "gen_battery_discharging": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 4.674240065735063,
+            "predicted_value": 31.004540065735064
+          },
+          "renewables_pct": {
+            "model_name": "lightgbm_residual_blend",
+            "alpha": 1.0,
+            "horizon_steps": 6,
+            "horizon_minutes": 30,
+            "predicted_residual": 13.815523236989401,
+            "predicted_value": 43.694098163750915
           }
         }
       }

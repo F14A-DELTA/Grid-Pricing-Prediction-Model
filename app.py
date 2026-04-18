@@ -54,7 +54,11 @@ def build_dataframe(payload: dict[str, Any]) -> pd.DataFrame:
         "demand": "Demand",
         "gen_wind": "Wind Gen",
         "gen_coal_black": "Black Coal",
-        "gen_coal_brown": "Brown Coal"
+        "gen_coal_brown": "Brown Coal",
+        "gen_solar_utility": "Solar (Grid)",
+        "gen_hydro": "Hydro",
+        "gen_battery_discharging": "Battery",
+        "renewables_pct": "Renewables %",
     }
 
     for row in payload.get("regions", []):

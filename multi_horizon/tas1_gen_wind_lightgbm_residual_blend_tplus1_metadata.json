@@ -69,9 +69,9 @@
     "abs_spread_TAS1_VIC1"
   ],
   "prediction_rule": "current_value + alpha * model_predicted_residual",
-  "alpha": 0.55,
-  "validation_mae": 5.773685515047208,
-  "validation_rmse": 8.58701346004734,
+  "alpha": 0.5,
+  "validation_mae": 5.7736930506525574,
+  "validation_rmse": 8.588012310196653,
   "baseline_mae": 5.789794146825398,
   "baseline_rmse": 8.61883773134671
 }
